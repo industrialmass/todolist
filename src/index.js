@@ -24,6 +24,18 @@ main.addEventListener("click", (event) => {
   // Creates a task editor form
   if (taskButton.contains(event.target)) {
     taskButton.remove();
+    const state = taskEditorState.get();
+    // If a task editor already exists, close it
+    const oldEditor = document.getElementById("task-editor");
+    if (oldEditor) {
+      if (state.type === "edit") {
+        taskEditorState.reset();
+        const newItem = makeListItem(toDoList.getItemById(state.itemID));
+        oldEditor.replaceWith(newItem);
+      } else {
+        oldEditor.remove();
+      }
+    }
     main.append(taskEditor());
     const date = document.getElementById("date");
 

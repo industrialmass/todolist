@@ -16,6 +16,11 @@ const navEventListeners = (() => {
         chevron.style.transform = hidden ? "rotate(0)" : "rotate(-0.25turn)";
       }, 200);
     }
+
+    const add = document.getElementById("project-add");
+    if (add && add.contains(event.target)) {
+      
+    }
   });
 })();
 
