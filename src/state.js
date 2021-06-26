@@ -3,10 +3,10 @@ import { projects } from "./project-list";
 const appState = (() => {
   const defaultState = {
     popup: {
-      name: "",
+      description: "",
     },
     selectedDate: null,
-    selectedProject: projects[0],
+    selectedProject: null,
     selectedPriority: 3,
     typedValue: "",
     type: "create",

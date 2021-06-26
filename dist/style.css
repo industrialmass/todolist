@@ -373,10 +373,6 @@ ul {
   margin-left: auto;
 }
 
-.project-list {
-  margin-left: 21px;
-}
-
 .project-controls:hover {
   cursor: pointer;
 }
@@ -441,6 +437,35 @@ ul {
 }
 
 .popup__controls {
+  width: 100%;
   margin-top: auto;
   margin-left: auto;
+}
+
+.project-list-container {
+  margin-left: 21px;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.project-list__controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.project-list__item {
+  display: flex;
+  align-items: center;
+}
+
+#project-remove,
+#project-edit {
+  padding: 1px;
+  margin: 1px;
+  font-size: 14px;
 }

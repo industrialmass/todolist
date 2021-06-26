@@ -5,10 +5,10 @@ const projectPicker = (projects) => {
   projectList.classList.add("project-picker-list");
   projectList.id = "project-picker-list";
 
-  for (const [index, project] of projects.entries()) {
+  for (const project of projects) {
     const listItem = document.createElement("li");
     listItem.classList.add("project-picker-list__item");
-    listItem.number = index;
+    listItem.number = project.id;
 
     const container = document.createElement("div");
     container.classList.add("project-picker-list__container");
@@ -17,7 +17,7 @@ const projectPicker = (projects) => {
     icon.classList.add("fas", "fa-clipboard-list");
 
     const text = document.createElement("p");
-    text.textContent = project.name;
+    text.textContent = project.description;
     text.classList.add("project-picker-list__text");
 
     container.append(icon, text);

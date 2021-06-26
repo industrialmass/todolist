@@ -1,6 +1,6 @@
-import { makeList } from "./makers/make-list";
-import { taskButton } from "./components/taskButton";
-import { projects } from "./project-list";
+import { taskButton } from "./components/task-button";
+import { ulToDoList } from "./components/ul-to-do-list";
+import { ulProjectList } from "./components/ul-project-list";
 
 const load = () => {
   const main = document.getElementById("main");
@@ -8,20 +8,16 @@ const load = () => {
   const headline = document.createElement("h1");
   headline.textContent = "Landing";
 
-  const ul = makeList();
+  const ul = ulToDoList();
 
   main.append(headline, ul, taskButton);
+  const projectListContainer = document.getElementById(
+    "project-list-container"
+  );
 
-  const projectListElement = document.getElementById("project-list");
-  const projectList = projects.get();
-  if (projectList.length) {
-    for (const project of projectList) {
-      const listItem = document.createElement("li");
-      listItem.textContent = project.name;
-      listItem.id = project.id;
-      projectListElement.append(listItem);
-    }
-  }
+  const ulProjects = ulProjectList();
+
+  projectListContainer.append(ulProjects);
 };
 
 export { load };

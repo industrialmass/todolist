@@ -1,7 +1,6 @@
 import { appState } from "../state";
-import { toDoList } from "../to-do-list";
-import { makeListItem } from "../makers/make-list-item";
-import { taskButton } from "../components/taskButton";
+import { taskButton } from "../components/task-button";
+import { ulToDoList } from "../components/ul-to-do-list";
 
 const closeOldEditor = () => {
   const state = appState.get();
@@ -11,8 +10,8 @@ const closeOldEditor = () => {
   // If a task editor already exists, close it
   if (oldEditor) {
     if (state.type === "edit") {
-      const newItem = makeListItem(toDoList.getItemById(state.itemID));
-      oldEditor.replaceWith(newItem);
+      const newList = ulToDoList();
+      document.getElementById("todolist").replaceWith(newList);
     } else {
       oldEditor.remove();
       main.append(taskButton);

@@ -46,7 +46,7 @@ const toDoList = (() => {
   const remove = (id) => {
     for (const item of list) {
       if (item.id === id) {
-        list.splice(list.indexOf(item));
+        list.splice(list.indexOf(item), 1);
       }
     }
     _updateStorage();

@@ -4,7 +4,7 @@ import { uniqueID } from "./unique-id";
 const makeProject = () => {
   const state = appState.get();
   return {
-    name: state.popup.name,
+    description: state.popup.description,
     id: state.popup.id ? state.popup.id : uniqueID.generate(),
   };
 };

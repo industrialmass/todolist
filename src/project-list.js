@@ -4,6 +4,8 @@ import { makeProject } from "./make-project";
 const projects = (() => {
   const list = getStorage("projects") ? getStorage("projects") : [];
 
+  console.log(list);
+
   const _updateStorage = () => {
     setStorage("projects", list);
   };
@@ -38,7 +40,7 @@ const projects = (() => {
   const remove = (id) => {
     for (const item of list) {
       if (item.id === id) {
-        list.splice(list.indexOf(item));
+        list.splice(list.indexOf(item), 1);
       }
     }
     _updateStorage();

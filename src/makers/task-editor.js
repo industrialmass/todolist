@@ -37,7 +37,9 @@ const taskEditor = () => {
   const projectPicker = makeButton({
     id: "project-picker",
     classes: ["button", "button--project-picker"],
-    description: state.selectedProject ? state.selectedProject.name : "Landing",
+    description: state.selectedProject
+      ? state.selectedProject.description
+      : "Project",
   });
   const priorityPicker = makeButton({
     id: "priority-picker",

@@ -1,16 +1,17 @@
+import { projects } from "./project-list";
 import { load } from "./load";
 import { taskEditor } from "./makers/task-editor";
 import { appState } from "./state";
 import { makeToDo } from "./make-to-do";
-import { makeList } from "./makers/make-list";
 import { toDoList } from "./to-do-list";
 import { projectPicker } from "./makers/project-picker";
 import { priorityPicker } from "./makers/priority-picker";
-import { projects } from "./project-list";
 import datepicker from "js-datepicker";
 import { resetTaskEditor } from "./reset-task-editor";
 import { bodyEventListeners } from "./body-event-listeners.js";
-import { closeOldEditor, taskButton } from "./helpers/dom-functions";
+import { closeOldEditor } from "./helpers/dom-functions";
+import { taskButton } from "./components/task-button";
+import { ulToDoList } from "./components/ul-to-do-list";
 
 load();
 
@@ -52,7 +53,7 @@ main.addEventListener("click", (event) => {
     );
     for (const item of projectListItems) {
       if (item.contains(event.target)) {
-        appState.set({ selectedProject: projects[item.number] });
+        appState.set({ selectedProject: projects.getItemById(item.number) });
         resetTaskEditor();
         break;
       }
@@ -65,7 +66,7 @@ main.addEventListener("click", (event) => {
   }
   // This opens the list
   else if (projectPickerButton && projectPickerButton.contains(event.target)) {
-    projectPicker(projects);
+    projectPicker(projects.get());
     main.projectPickerOpen = true;
   }
 
@@ -119,7 +120,7 @@ main.addEventListener("click", (event) => {
     input.value = null;
     const list = document.getElementById("todolist");
     if (list) list.remove();
-    main.append(makeList());
+    main.append(ulToDoList());
 
     // Clean up the task editor
     const taskEditor = document.getElementById("task-editor");

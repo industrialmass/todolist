@@ -9,7 +9,7 @@ const bodyEventListeners = (() => {
   body.addEventListener("click", (event) => {
     const collapse = document.getElementById("project-header");
     if (collapse && collapse.contains(event.target)) {
-      const projectList = document.getElementById("project-list");
+      const projectList = document.getElementById("project-list-container");
       const hidden = projectList.style.display === "none";
       projectList.style.display = hidden ? "block" : "none";
 
@@ -44,7 +44,7 @@ const bodyEventListeners = (() => {
   body.addEventListener("input", (event) => {
     const name = document.getElementById("name-input");
     if (name && name.contains(event.target)) {
-      appState.set({ popup: { name: name.value } });
+      appState.set({ popup: { description: name.value } });
     }
   });
 })();
