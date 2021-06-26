@@ -1,4 +1,4 @@
-import { taskEditor } from "./components/task-editor";
+import { taskEditor } from "./makers/task-editor";
 import { appState } from "./state";
 import datepicker from "js-datepicker";
 

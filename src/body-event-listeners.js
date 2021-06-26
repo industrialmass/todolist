@@ -1,4 +1,4 @@
-import { makePopup } from "./components/make-popup";
+import { makePopup } from "./makers/make-popup";
 import { makeProject } from "./make-project";
 import { projects } from "./project-list";
 import { appState } from "./state";

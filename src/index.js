@@ -1,11 +1,11 @@
 import { load } from "./load";
-import { taskEditor } from "./components/task-editor";
+import { taskEditor } from "./makers/task-editor";
 import { appState } from "./state";
 import { makeToDo } from "./make-to-do";
-import { makeList } from "./components/make-list";
+import { makeList } from "./makers/make-list";
 import { toDoList } from "./to-do-list";
-import { projectPicker } from "./components/project-picker";
-import { priorityPicker } from "./components/priority-picker";
+import { projectPicker } from "./makers/project-picker";
+import { priorityPicker } from "./makers/priority-picker";
 import { projects } from "./project-list";
 import datepicker from "js-datepicker";
 import { resetTaskEditor } from "./reset-task-editor";

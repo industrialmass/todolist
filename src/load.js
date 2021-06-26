@@ -1,6 +1,5 @@
-import { makeButton } from "./components/make-button";
-import { makeList } from "./components/make-list";
-import { taskButton } from "./helpers/dom-functions";
+import { makeList } from "./makers/make-list";
+import { taskButton } from "./components/taskButton";
 import { projects } from "./project-list";
 
 const load = () => {

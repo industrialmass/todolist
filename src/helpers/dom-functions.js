@@ -1,25 +1,7 @@
 import { appState } from "../state";
 import { toDoList } from "../to-do-list";
-import { makeButton } from "../components/make-button";
-import { makeListItem } from "../components/make-list-item";
-
-const taskButton = (() => {
-  return makeButton({
-    id: "task-init",
-    classes: ["button", "button--task-init"],
-    description: "Add task",
-    icons: [
-      {
-        id: "plus",
-        classes: ["fa", "fa-plus", "task_button__icons"],
-      },
-      {
-        id: "plus-circle",
-        classes: ["fa", "fa-plus-circle", "task_button__icons"],
-      },
-    ],
-  });
-})();
+import { makeListItem } from "../makers/make-list-item";
+import { taskButton } from "../components/taskButton";
 
 const closeOldEditor = () => {
   const state = appState.get();
@@ -39,4 +21,4 @@ const closeOldEditor = () => {
   appState.reset();
 };
 
-export { closeOldEditor, taskButton };
+export { closeOldEditor };
