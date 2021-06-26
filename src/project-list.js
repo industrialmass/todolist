@@ -1,19 +1,11 @@
 import { getStorage, setStorage } from "./helpers/storage-functions";
-import { makeToDo } from "./make-to-do";
+import { makeProject } from "./make-project";
 
-const toDoList = (() => {
-  const list = getStorage("toDoList") ? getStorage("toDoList") : [];
-  // JSON.parse, which we use to retrieve items from storage,
-  // unfortunately doesn't preserve Date objects, so we need
-  // to use the Date constructor to make new ones
-  for (const item of list) {
-    if (item.dueDate && typeof item.dueDate !== "object") {
-      item.dueDate = new Date(item.dueDate);
-    }
-  }
+const projects = (() => {
+  const list = getStorage("projects") ? getStorage("projects") : [];
 
   const _updateStorage = () => {
-    setStorage("toDoList", list);
+    setStorage("projects", list);
   };
 
   const get = () => {
@@ -28,15 +20,15 @@ const toDoList = (() => {
     }
   };
 
-  const add = (todo) => {
-    list.push(todo);
+  const add = (project) => {
+    list.push(project);
     _updateStorage();
   };
 
   const update = (id) => {
     for (const item of list) {
       if (item.id === id) {
-        list[list.indexOf(item)] = makeToDo();
+        list[list.indexOf(item)] = makeProject();
       }
     }
 
@@ -55,4 +47,4 @@ const toDoList = (() => {
   return { get, getItemById, add, update, remove };
 })();
 
-export { toDoList };
+export { projects };

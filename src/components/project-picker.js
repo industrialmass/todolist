@@ -1,4 +1,4 @@
-import { taskEditorState } from "../state";
+import { appState } from "../state";
 
 const projectPicker = (projects) => {
   const projectList = document.createElement("ul");
@@ -21,7 +21,7 @@ const projectPicker = (projects) => {
     text.classList.add("project-picker-list__text");
 
     container.append(icon, text);
-    if (taskEditorState.get().selectedProject === project) {
+    if (appState.get().selectedProject === project) {
       const check = document.createElement("i");
       check.classList.add("fas", "fa-check");
       container.append(check);

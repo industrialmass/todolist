@@ -1,5 +1,5 @@
 import { colorPicker } from "../helpers/color-functions";
-import { taskEditorState } from "../state";
+import { appState } from "../state";
 
 const priorityPicker = () => {
   const priorityList = document.createElement("ul");
@@ -25,7 +25,7 @@ const priorityPicker = () => {
     text.classList.add("priority-picker-list__text");
 
     container.append(icon, text);
-    if (taskEditorState.get().selectedPriority === i) {
+    if (appState.get().selectedPriority === i) {
       const check = document.createElement("i");
       check.classList.add("fas", "fa-check");
       container.append(check);

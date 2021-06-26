@@ -1,16 +1,16 @@
 import { load } from "./load";
 import { taskEditor } from "./components/task-editor";
-import { taskEditorState } from "./state";
+import { appState } from "./state";
 import { makeToDo } from "./make-to-do";
 import { makeList } from "./components/make-list";
 import { toDoList } from "./to-do-list";
 import { projectPicker } from "./components/project-picker";
 import { priorityPicker } from "./components/priority-picker";
-import { projects } from "./projects";
+import { projects } from "./project-list";
 import datepicker from "js-datepicker";
 import { resetTaskEditor } from "./reset-task-editor";
 import { makeListItem } from "./components/make-list-item";
-import { navEventListeners } from "./nav-event-listeners.js";
+import { bodyEventListeners } from "./body-event-listeners.js";
 
 load();
 
@@ -24,12 +24,12 @@ main.addEventListener("click", (event) => {
   // Creates a task editor form
   if (taskButton.contains(event.target)) {
     taskButton.remove();
-    const state = taskEditorState.get();
+    const state = appState.get();
     // If a task editor already exists, close it
     const oldEditor = document.getElementById("task-editor");
     if (oldEditor) {
       if (state.type === "edit") {
-        taskEditorState.reset();
+        appState.reset();
         const newItem = makeListItem(toDoList.getItemById(state.itemID));
         oldEditor.replaceWith(newItem);
       } else {
@@ -43,7 +43,7 @@ main.addEventListener("click", (event) => {
       disableYearOverlay: true,
       minDate: new Date(),
       onSelect: (instance, day) => {
-        taskEditorState.set({ selectedDate: day });
+        appState.set({ selectedDate: day });
         resetTaskEditor();
       },
     });
@@ -65,7 +65,7 @@ main.addEventListener("click", (event) => {
     );
     for (const item of projectListItems) {
       if (item.contains(event.target)) {
-        taskEditorState.set({ selectedProject: projects[item.number] });
+        appState.set({ selectedProject: projects[item.number] });
         resetTaskEditor();
         break;
       }
@@ -91,7 +91,7 @@ main.addEventListener("click", (event) => {
     );
     for (const item of priorityListItems) {
       if (item.contains(event.target)) {
-        taskEditorState.set({ selectedPriority: item.number });
+        appState.set({ selectedPriority: item.number });
         resetTaskEditor();
         break;
       }
@@ -113,7 +113,7 @@ main.addEventListener("click", (event) => {
   const cancel = document.getElementById("cancel");
   if (cancel && cancel.contains(event.target)) {
     const oldEditor = document.getElementById("task-editor");
-    const state = taskEditorState.get();
+    const state = appState.get();
     if (oldEditor) {
       if (state.type === "edit") {
         const newItem = makeListItem(toDoList.getItemById(state.itemID));
@@ -123,7 +123,7 @@ main.addEventListener("click", (event) => {
         main.append(taskButton);
       }
     }
-    taskEditorState.reset();
+    appState.reset();
     return;
   }
 
@@ -148,7 +148,7 @@ main.addEventListener("click", (event) => {
     // Clean up the task editor
     const taskEditor = document.getElementById("task-editor");
     taskEditor.remove();
-    taskEditorState.reset();
+    appState.reset();
     main.append(taskButton);
     return;
   }
@@ -177,7 +177,7 @@ main.addEventListener("click", (event) => {
     )
   ) {
     const list = document.querySelectorAll(".todolist__item");
-    const state = taskEditorState.get();
+    const state = appState.get();
     for (const item of list) {
       if (item.contains(event.target)) {
         // If a task editor already exists, close it
@@ -194,7 +194,7 @@ main.addEventListener("click", (event) => {
 
         // Update the state with the relevant todo
         const todo = toDoList.getItemById(item.id);
-        taskEditorState.set({
+        appState.set({
           typedValue: todo.description,
           selectedDate: todo.dueDate,
           selectedProject: todo.project,
@@ -213,7 +213,7 @@ main.addEventListener("click", (event) => {
           disableYearOverlay: true,
           minDate: new Date(),
           onSelect: (instance, day) => {
-            taskEditorState.set({ selectedDate: day });
+            appState.set({ selectedDate: day });
             resetTaskEditor();
           },
         });
@@ -223,13 +223,13 @@ main.addEventListener("click", (event) => {
 
   const save = document.getElementById("save");
   if (save && save.contains(event.target)) {
-    const state = taskEditorState.get();
+    const state = appState.get();
     toDoList.update(state.itemID);
     const editor = document.getElementById("task-editor");
     const newItem = makeListItem(toDoList.getItemById(state.itemID));
     editor.replaceWith(newItem);
 
-    taskEditorState.reset();
+    appState.reset();
   }
 });
 
@@ -239,6 +239,6 @@ main.addEventListener("input", (event) => {
   // but we don't need to rerender.
   const input = document.getElementById("input");
   if (input && input.contains(event.target)) {
-    taskEditorState.set({ typedValue: input.value });
+    appState.set({ typedValue: input.value });
   }
 });

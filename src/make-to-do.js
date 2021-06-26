@@ -1,8 +1,8 @@
-import { taskEditorState } from "./state";
+import { appState } from "./state";
 import { uniqueID } from "./unique-id";
 
 const makeToDo = () => {
-  const state = taskEditorState.get();
+  const state = appState.get();
   return {
     description: state.typedValue,
     dueDate: state.selectedDate,

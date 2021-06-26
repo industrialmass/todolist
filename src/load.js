@@ -1,6 +1,6 @@
 import { makeButton } from "./components/make-button";
 import { makeList } from "./components/make-list";
-import { projects } from "./projects";
+import { projects } from "./project-list";
 
 const load = () => {
   const main = document.getElementById("main");
@@ -28,11 +28,15 @@ const load = () => {
 
   main.append(headline, ul, button);
 
-  const projectList = document.getElementById("project-list");
-  for (const project of projects) {
-    const listItem = document.createElement("li");
-    listItem.textContent = project.name;
-    projectList.append(listItem);
+  const projectListElement = document.getElementById("project-list");
+  const projectList = projects.get();
+  if (projectList.length) {
+    for (const project of projectList) {
+      const listItem = document.createElement("li");
+      listItem.textContent = project.name;
+      listItem.id = project.id;
+      projectListElement.append(listItem);
+    }
   }
 };
 

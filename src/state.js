@@ -1,7 +1,10 @@
-import { projects } from "./projects";
+import { projects } from "./project-list";
 
-const taskEditorState = (() => {
+const appState = (() => {
   const defaultState = {
+    popup: {
+      name: "",
+    },
     selectedDate: null,
     selectedProject: projects[0],
     selectedPriority: 3,
@@ -35,4 +38,4 @@ const taskEditorState = (() => {
   };
 })();
 
-export { taskEditorState };
+export { appState };

@@ -2,14 +2,14 @@ import { makeButton } from "./make-button";
 import { makeInput } from "./make-input";
 import { dateToString } from "../helpers/date-functions";
 import { colorPicker } from "../helpers/color-functions";
-import { taskEditorState } from "../state";
+import { appState } from "../state";
 
 const taskEditor = () => {
   const form = document.createElement("form");
   form.classList.add("form");
   form.id = "task-editor";
 
-  const state = taskEditorState.get();
+  const state = appState.get();
 
   if (state.itemID) {
     form.classList.add(state.itemID);

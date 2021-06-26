@@ -1,10 +1,10 @@
 import { taskEditor } from "./components/task-editor";
-import { taskEditorState } from "./state";
+import { appState } from "./state";
 import datepicker from "js-datepicker";
 
 const resetTaskEditor = () => {
   const oldEditor = document.getElementById("task-editor");
-  const state = taskEditorState.get();
+  const state = appState.get();
 
   const editor = taskEditor(state);
   oldEditor.replaceWith(editor);
@@ -15,7 +15,7 @@ const resetTaskEditor = () => {
     disableYearOverlay: true,
     minDate: new Date(),
     onSelect: (instance, day) => {
-      taskEditorState.set({ selectedDate: day });
+      appState.set({ selectedDate: day });
       resetTaskEditor();
     },
   });
