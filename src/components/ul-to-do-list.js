@@ -8,8 +8,8 @@ const ulToDoList = () => {
   return makeList(toDoList.get(), {
     listId: "todolist",
     controlButtons: [
-      { id: "remove", func: removeButton },
       { id: "edit", func: editButton },
+      { id: "remove", func: removeButton },
     ],
     sideButtons: [{ id: "check-circle", func: checkCircle }],
   });

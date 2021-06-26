@@ -7,8 +7,8 @@ const ulProjectList = () => {
   return makeList(projects.get(), {
     listId: "project-list",
     controlButtons: [
-      { id: "project-remove", func: removeButton },
       { id: "project-edit", func: editButton },
+      { id: "project-remove", func: removeButton },
     ],
   });
 };

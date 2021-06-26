@@ -109,11 +109,6 @@ main.addEventListener("click", (event) => {
   const submit = document.getElementById("submit");
   if (submit && submit.contains(event.target)) {
     const input = document.getElementById("input");
-    if (!input.value) {
-      main.append((document.createElement("span").textContent = "yo"));
-      return;
-    }
-
     const toDo = makeToDo();
     toDoList.add(toDo);
 
@@ -154,7 +149,6 @@ main.addEventListener("click", (event) => {
     )
   ) {
     const list = document.querySelectorAll(".todolist__item");
-    const state = appState.get();
     for (const item of list) {
       if (item.contains(event.target)) {
         // If a task editor already exists, close it

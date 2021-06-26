@@ -453,12 +453,14 @@ ul {
 }
 
 .project-list__controls {
+  display: none;
   margin-left: auto;
-  display: flex;
   align-items: center;
 }
 
 .project-list__item {
+  padding: 5px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
 }
@@ -468,4 +470,13 @@ ul {
   padding: 1px;
   margin: 1px;
   font-size: 14px;
+}
+
+.project-list__item:hover > .project-list__controls {
+  animation: fadein 1s;
+  display: flex;
+}
+
+.project-list__item:hover {
+  background-color: #ddd;
 }

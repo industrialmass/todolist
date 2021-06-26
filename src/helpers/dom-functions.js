@@ -20,4 +20,9 @@ const closeOldEditor = () => {
   appState.reset();
 };
 
-export { closeOldEditor };
+const closePopup = () => {
+  document.getElementById("popup").remove();
+  document.getElementById("dark-screen").style.display = "none";
+};
+
+export { closeOldEditor, closePopup };

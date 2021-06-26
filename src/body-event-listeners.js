@@ -2,6 +2,8 @@ import { makePopup } from "./makers/make-popup";
 import { makeProject } from "./make-project";
 import { projects } from "./project-list";
 import { appState } from "./state";
+import { ulProjectList } from "./components/ul-project-list";
+import { closePopup } from "./helpers/dom-functions";
 
 const bodyEventListeners = (() => {
   const body = document.body;
@@ -28,16 +30,16 @@ const bodyEventListeners = (() => {
 
     const cancel = document.getElementById("popup-cancel");
     if (cancel && cancel.contains(event.target)) {
-      document.getElementById("popup").remove();
-      document.getElementById("dark-screen").style.display = "none";
+      closePopup();
     }
 
     const submit = document.getElementById("popup-submit");
     if (submit && submit.contains(event.target)) {
       const project = makeProject();
       projects.add(project);
-      document.getElementById("popup").remove();
-      document.getElementById("dark-screen").style.display = "none";
+      
+      closePopup();
+      document.getElementById("project-list").replaceWith(ulProjectList());
     }
   });
 
