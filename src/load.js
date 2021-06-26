@@ -1,5 +1,6 @@
 import { makeButton } from "./components/make-button";
 import { makeList } from "./components/make-list";
+import { taskButton } from "./helpers/dom-functions";
 import { projects } from "./project-list";
 
 const load = () => {
@@ -8,25 +9,9 @@ const load = () => {
   const headline = document.createElement("h1");
   headline.textContent = "Landing";
 
-  const button = makeButton({
-    id: "task-init",
-    classes: ["button", "button--task-init"],
-    description: "Add task",
-    icons: [
-      {
-        id: "plus",
-        classes: ["fa", "fa-plus", "task_button__icons"],
-      },
-      {
-        id: "plus-circle",
-        classes: ["fa", "fa-plus-circle", "task_button__icons"],
-      },
-    ],
-  });
-
   const ul = makeList();
 
-  main.append(headline, ul, button);
+  main.append(headline, ul, taskButton);
 
   const projectListElement = document.getElementById("project-list");
   const projectList = projects.get();

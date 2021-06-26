@@ -9,14 +9,12 @@ import { priorityPicker } from "./components/priority-picker";
 import { projects } from "./project-list";
 import datepicker from "js-datepicker";
 import { resetTaskEditor } from "./reset-task-editor";
-import { makeListItem } from "./components/make-list-item";
 import { bodyEventListeners } from "./body-event-listeners.js";
+import { closeOldEditor, taskButton } from "./helpers/dom-functions";
 
 load();
 
 const main = document.getElementById("main");
-// Declared here for closure with main's event listener
-const taskButton = document.getElementById("task-init");
 
 // Event delegation; click handler
 main.addEventListener("click", (event) => {
@@ -24,18 +22,7 @@ main.addEventListener("click", (event) => {
   // Creates a task editor form
   if (taskButton.contains(event.target)) {
     taskButton.remove();
-    const state = appState.get();
-    // If a task editor already exists, close it
-    const oldEditor = document.getElementById("task-editor");
-    if (oldEditor) {
-      if (state.type === "edit") {
-        appState.reset();
-        const newItem = makeListItem(toDoList.getItemById(state.itemID));
-        oldEditor.replaceWith(newItem);
-      } else {
-        oldEditor.remove();
-      }
-    }
+    closeOldEditor();
     main.append(taskEditor());
     const date = document.getElementById("date");
 
@@ -112,18 +99,7 @@ main.addEventListener("click", (event) => {
   // Closes the task editor form without saving
   const cancel = document.getElementById("cancel");
   if (cancel && cancel.contains(event.target)) {
-    const oldEditor = document.getElementById("task-editor");
-    const state = appState.get();
-    if (oldEditor) {
-      if (state.type === "edit") {
-        const newItem = makeListItem(toDoList.getItemById(state.itemID));
-        oldEditor.replaceWith(newItem);
-      } else {
-        oldEditor.remove();
-        main.append(taskButton);
-      }
-    }
-    appState.reset();
+    closeOldEditor();
     return;
   }
 
@@ -181,16 +157,7 @@ main.addEventListener("click", (event) => {
     for (const item of list) {
       if (item.contains(event.target)) {
         // If a task editor already exists, close it
-        const oldEditor = document.getElementById("task-editor");
-        if (oldEditor) {
-          if (state.type === "edit") {
-            const newItem = makeListItem(toDoList.getItemById(state.itemID));
-            oldEditor.replaceWith(newItem);
-          } else {
-            oldEditor.remove();
-            main.append(taskButton);
-          }
-        }
+        closeOldEditor();
 
         // Update the state with the relevant todo
         const todo = toDoList.getItemById(item.id);
@@ -225,11 +192,7 @@ main.addEventListener("click", (event) => {
   if (save && save.contains(event.target)) {
     const state = appState.get();
     toDoList.update(state.itemID);
-    const editor = document.getElementById("task-editor");
-    const newItem = makeListItem(toDoList.getItemById(state.itemID));
-    editor.replaceWith(newItem);
-
-    appState.reset();
+    closeOldEditor();
   }
 });
 
