@@ -28,6 +28,24 @@ const bodyEventListeners = (() => {
       document.getElementById("dark-screen").style.display = "flex";
     }
 
+    const remove = document.getElementById("project-remove");
+    if (remove && remove.contains(event.target)) {
+      const projectListItems = document.querySelectorAll(".project-list__item");
+      for (const item of projectListItems) {
+        if (item.contains(event.target)) {
+          projects.remove(item.id);
+          break;
+        }
+      }
+      document.getElementById("project-list").replaceWith(ulProjectList());
+    }
+
+    const edit = document.getElementById("project-edit");
+    if (edit && edit.contains(event.target)) {
+      document.getElementById("dark-screen").append(makePopup());
+      document.getElementById("dark-screen").style.display = "flex";
+    }
+
     const cancel = document.getElementById("popup-cancel");
     if (cancel && cancel.contains(event.target)) {
       closePopup();
@@ -37,7 +55,7 @@ const bodyEventListeners = (() => {
     if (submit && submit.contains(event.target)) {
       const project = makeProject();
       projects.add(project);
-      
+
       closePopup();
       document.getElementById("project-list").replaceWith(ulProjectList());
     }
