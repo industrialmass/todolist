@@ -1,5 +1,5 @@
-import { appState } from "./state";
-import { uniqueID } from "./unique-id";
+import { appState } from "../state";
+import { uniqueID } from "../helpers/unique-id";
 
 const makeToDo = () => {
   const state = appState.get();

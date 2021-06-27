@@ -1,7 +1,7 @@
 import { isToday, isUpcoming } from "../helpers/date-functions";
 import { makeList } from "../makers/make-list";
 import { appState } from "../state";
-import { toDoList } from "../to-do-list";
+import { toDoList } from "../data/to-do-list";
 import { checkCircle } from "./check-circle";
 import { checkedCircle } from "./checked-circle";
 import { editButton } from "./edit-button";

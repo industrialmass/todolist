@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "./helpers/storage-functions";
+import { getStorage, setStorage } from "./storage-functions";
 
 const uniqueID = (() => {
   // Retrieve the ID array from storage

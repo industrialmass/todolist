@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "./helpers/storage-functions";
+import { getStorage, setStorage } from "../helpers/storage-functions";
 import { makeProject } from "./make-project";
 
 const projects = (() => {

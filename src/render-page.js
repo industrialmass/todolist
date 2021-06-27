@@ -1,8 +1,8 @@
 import { appState } from "./state";
 import { taskButton } from "./components/task-button";
 import { ulToDoList } from "./components/ul-to-do-list";
-import { mainEventListeners } from "./main-event-listeners";
-import { toDoList } from "./to-do-list";
+import { mainEventListeners } from "./event-listeners/main-event-listeners";
+import { toDoList } from "./data/to-do-list";
 import { colorPicker } from "./helpers/color-functions";
 
 const _getHeaderText = (page) => {

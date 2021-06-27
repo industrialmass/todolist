@@ -1,4 +1,4 @@
-import { projects } from "../project-list";
+import { projects } from "../data/project-list";
 import { appState } from "../state";
 import { makeButton } from "./make-button";
 import { makeInput } from "./make-input";

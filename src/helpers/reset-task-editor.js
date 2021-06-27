@@ -1,5 +1,5 @@
-import { taskEditor } from "./makers/task-editor";
-import { appState } from "./state";
+import { taskEditor } from "../makers/task-editor";
+import { appState } from "../state";
 import datepicker from "js-datepicker";
 
 const resetTaskEditor = () => {

@@ -1,4 +1,4 @@
-import { projects } from "../project-list";
+import { projects } from "../data/project-list";
 import { editButton } from "./edit-button";
 import { removeButton } from "./remove-button";
 import { makeList } from "../makers/make-list";

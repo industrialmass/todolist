@@ -3,7 +3,7 @@ import { makeInput } from "./make-input";
 import { dateToString } from "../helpers/date-functions";
 import { colorPicker } from "../helpers/color-functions";
 import { appState } from "../state";
-import { projects } from "../project-list";
+import { projects } from "../data/project-list";
 
 const taskEditor = () => {
   const form = document.createElement("form");

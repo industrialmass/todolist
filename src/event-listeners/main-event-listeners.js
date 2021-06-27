@@ -1,14 +1,14 @@
-import { projects } from "./project-list";
-import { taskEditor } from "./makers/task-editor";
-import { appState } from "./state";
-import { makeToDo } from "./make-to-do";
-import { toDoList } from "./to-do-list";
-import { projectPicker } from "./makers/project-picker";
-import { priorityPicker } from "./makers/priority-picker";
+import { projects } from "../data/project-list";
+import { taskEditor } from "../makers/task-editor";
+import { appState } from "../state";
+import { makeToDo } from "../data/make-to-do";
+import { toDoList } from "../data/to-do-list";
+import { projectPicker } from "../makers/project-picker";
+import { priorityPicker } from "../makers/priority-picker";
 import datepicker from "js-datepicker";
-import { resetTaskEditor } from "./reset-task-editor";
-import { taskButton } from "./components/task-button";
-import { renderPage } from "./render-page";
+import { resetTaskEditor } from "../helpers/reset-task-editor";
+import { taskButton } from "../components/task-button";
+import { renderPage } from "../render-page";
 
 const mainEventListeners = () => {
   const main = document.getElementById("main");

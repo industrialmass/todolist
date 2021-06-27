@@ -1,11 +1,11 @@
-import { bodyEventListeners } from "./body-event-listeners.js";
-import { mainEventListeners } from "./main-event-listeners";
+import { bodyEventListeners } from "./event-listeners/body-event-listeners.js";
+import { mainEventListeners } from "./event-listeners/main-event-listeners";
 import { ulProjectList } from "./components/ul-project-list";
 import { renderPage } from "./render-page";
 import { getStorage, setStorage } from "./helpers/storage-functions.js";
-import { projects } from "./project-list.js";
-import { toDoList } from "./to-do-list.js";
-import { uniqueID } from "./unique-id.js";
+import { projects } from "./data/project-list.js";
+import { toDoList } from "./data/to-do-list.js";
+import { uniqueID } from "./helpers/unique-id.js";
 
 if (!getStorage("loadedBefore")) {
   projects.add({ description: "Tutorial", id: uniqueID.generate() });

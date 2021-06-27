@@ -1,11 +1,11 @@
-import { makePopup } from "./makers/make-popup";
-import { makeProject } from "./make-project";
-import { projects } from "./project-list";
-import { appState } from "./state";
-import { ulProjectList } from "./components/ul-project-list";
-import { closePopup } from "./helpers/dom-functions";
-import { renderPage } from "./render-page";
-import { toDoList } from "./to-do-list";
+import { makePopup } from "../makers/make-popup";
+import { makeProject } from "../data/make-project";
+import { projects } from "../data/project-list";
+import { appState } from "../state";
+import { ulProjectList } from "../components/ul-project-list";
+import { closePopup } from "../helpers/dom-functions";
+import { renderPage } from "../render-page";
+import { toDoList } from "../data/to-do-list";
 
 const bodyEventListeners = (() => {
   const body = document.body;
