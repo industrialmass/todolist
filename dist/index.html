@@ -20,9 +20,18 @@
     <div class="content-wrapper">
       <nav id="nav">
         <ul class="navlist">
-          <li id="home">Landing</li>
-          <li id="today">Today</li>
-          <li id="upcoming">Upcoming</li>
+          <li id="home" class="navlist__item">
+            <i class="fa-fw fas fa-inbox navlist__icon"></i
+            ><span class="navlist__text">Landing</span>
+          </li>
+          <li id="today" class="navlist__item">
+            <i class="fas fa-calendar-day fa-w-14 navlist__icon"></i
+            ><span class="navlist__text">Today</span>
+          </li>
+          <li id="upcoming" class="navlist__item">
+            <i class="fas fa-calendar-week fa-fw navlist__icon"></i
+            ><span class="navlist__text">Upcoming</span>
+          </li>
         </ul>
         <div class="project-container">
           <div class="project-controls">
@@ -31,7 +40,7 @@
               <span class="project-header__text">Projects</span>
             </button>
             <button id="project-add" class="button project-add">
-              <i class="fas fa-plus"></i>
+              <i class="fas fa-plus fa-fw"></i>
             </button>
           </div>
           <ul class="project-list-container" id="project-list-container"></ul>

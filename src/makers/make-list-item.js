@@ -25,7 +25,9 @@ const makeListItem = (data, parameters) => {
 
   // Side buttons - to the left of our content
   const listItemSideButtons = document.createElement("div");
-
+  listItemSideButtons.classList.add(
+    `${parameters.listId}__side-button-container`
+  );
   // Controls - to the right of our content
   const listItemControls = document.createElement("div");
   listItemControls.classList.add(`${parameters.listId}__controls`);

@@ -91,12 +91,16 @@ nav {
   margin-left: 35px;
 }
 
-.navlist > * {
+.navlist__item {
   box-sizing: border-box;
   border-radius: 5px;
   padding: 5px;
   width: 100%;
   margin-bottom: 10px;
+}
+
+.navlist__text {
+  margin-left: 10px;
 }
 
 .navlist > *:hover {
@@ -354,7 +358,7 @@ ul {
 
 .project-header__text {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-left: 4px;
+  margin-left: 5px;
   font-size: 16px;
 }
 
@@ -476,14 +480,14 @@ ul {
   border-radius: 5px;
 }
 
-.project-list-container {
-  margin-left: 21px;
-}
-
 .project-list {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.project-list__side-button-container {
+  display: flex;
 }
 
 .project-list__controls {
@@ -501,6 +505,7 @@ ul {
 
 .project-list__item-content {
   overflow: hidden;
+  margin-left: 10px;
 }
 
 .project-list__control-buttons {
@@ -515,6 +520,7 @@ ul {
 }
 
 .project-list__item:hover {
+  cursor: pointer;
   background-color: #ddd;
 }
 
@@ -552,4 +558,21 @@ ul {
   .todolist__controls {
     display: block;
   }
+}
+
+.fa-inbox {
+  color: rgba(51, 166, 211, 0.712);
+  max-width: 16px;
+}
+
+.fa-calendar-day {
+  color: rgba(25, 156, 95, 0.562);
+}
+
+.fa-calendar-week {
+  color: rgba(179, 20, 179, 0.562);
+}
+
+.dot {
+  font-size: 10px;
 }
