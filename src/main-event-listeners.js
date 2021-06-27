@@ -182,9 +182,12 @@ const mainEventListeners = () => {
     }
 
     if (event.target.matches(".todolist__side-buttons *")) {
+      event.stopImmediatePropagation();
       const li = event.target.closest(".todolist__item");
-      toDoList.update(li.id);
+      toDoList.toggleComplete(li.id);
       renderPage();
+
+      console.log(toDoList.getItemById(li.id).complete);
     }
   });
 

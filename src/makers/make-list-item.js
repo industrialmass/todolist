@@ -5,6 +5,8 @@ const makeListItem = (data, parameters) => {
   const listItem = document.createElement("li");
   listItem.id = data.id;
   listItem.classList.add(`${parameters.listId}__item`);
+  if (data.complete)
+    listItem.classList.add(`${parameters.listId}__item--complete`);
 
   // A div to hold the text content
   const listItemContent = document.createElement("div");
@@ -17,7 +19,7 @@ const makeListItem = (data, parameters) => {
   if (data.dueDate) {
     const date = document.createElement("div");
     date.textContent = dateToString(data.dueDate);
-    date.classList.add("date-text")
+    date.classList.add("date-text");
     listItemContent.append(date);
   }
 
@@ -30,11 +32,13 @@ const makeListItem = (data, parameters) => {
 
   // Append the relevant buttons
   if (parameters.sideButtons) {
-    for (const button of parameters.sideButtons) {
-      const newButton = button.func(`${button.id}|${data.id}`);
-      newButton.classList.add(`${parameters.listId}__side-buttons`);
-      listItemSideButtons.append(newButton);
-    }
+    const completedButton = parameters.sideButtons.completed;
+    const uncompletedButton = parameters.sideButtons.uncompleted;
+    const newButton = data.complete
+      ? completedButton.func(`${completedButton.id}|${data.id}`)
+      : uncompletedButton.func(`${uncompletedButton.id}|${data.id}`);
+    newButton.classList.add(`${parameters.listId}__side-buttons`);
+    listItemSideButtons.append(newButton);
   }
 
   if (parameters.controlButtons) {

@@ -3,6 +3,7 @@ import { makeList } from "../makers/make-list";
 import { appState } from "../state";
 import { toDoList } from "../to-do-list";
 import { checkCircle } from "./check-circle";
+import { checkedCircle } from "./checked-circle";
 import { editButton } from "./edit-button";
 import { removeButton } from "./remove-button";
 
@@ -33,7 +34,10 @@ const ulToDoList = () => {
       { id: "edit", func: editButton },
       { id: "remove", func: removeButton },
     ],
-    sideButtons: [{ id: "check-circle", func: checkCircle }],
+    sideButtons: {
+      uncompleted: { id: "check-circle", func: checkCircle },
+      completed: { id: "checked-circle", func: checkedCircle },
+    },
   });
 };
 

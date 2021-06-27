@@ -312,6 +312,11 @@ ul {
   border-bottom: 1px solid rgba(128, 128, 128, 0.178);
 }
 
+.todolist__item--complete {
+  text-decoration: line-through;
+  color: grey;
+}
+
 .todolist__item:hover {
   background-color: rgba(128, 128, 128, 0.062);
 }
@@ -340,15 +345,6 @@ ul {
   font-size: 20px;
   min-height: 24px;
   margin-right: 8px;
-}
-
-.button--check-circle > .svg-inline--fa + .svg-inline--fa,
-.button--check-circle:hover > .svg-inline--fa {
-  display: none;
-}
-
-.button--check-circle:hover > .svg-inline--fa + .svg-inline--fa {
-  display: inline-block;
 }
 
 .project-container {

@@ -42,9 +42,7 @@ const isUpcoming = (date) => {
   return (date.getTime() - today.getTime()) / (1000 * 3600 * 24) <= 14;
 };
 
-export { dateToString, isToday, isUpcoming };
-
-function _getMonthName(month) {
+const _getMonthName = (month) => {
   switch (month) {
     case 0:
       return "Jan";
@@ -82,4 +80,6 @@ function _getMonthName(month) {
     case 11:
       return "Dec";
   }
-}
+};
+
+export { dateToString, isToday, isUpcoming };

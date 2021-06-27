@@ -43,6 +43,16 @@ const toDoList = (() => {
     _updateStorage();
   };
 
+  const toggleComplete = (id) => {
+    for (const item of list) {
+      if (item.id === id) {
+        const complete = list[list.indexOf(item)].complete;
+        list[list.indexOf(item)].complete = complete ? false : true;
+      }
+    }
+    _updateStorage();
+  };
+
   const remove = (id) => {
     for (const item of list) {
       if (item.id === id) {
@@ -52,7 +62,7 @@ const toDoList = (() => {
     _updateStorage();
   };
 
-  return { get, getItemById, add, update, remove };
+  return { get, getItemById, add, update, remove, toggleComplete };
 })();
 
 export { toDoList };

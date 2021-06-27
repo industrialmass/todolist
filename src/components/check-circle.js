@@ -9,10 +9,6 @@ const checkCircle = (input) => {
         id: "check-circle-off",
         classes: ["far", "fa-circle"],
       },
-      {
-        id: "check-circle-on",
-        classes: ["far", "fa-check-circle"],
-      },
     ],
   });
 };
