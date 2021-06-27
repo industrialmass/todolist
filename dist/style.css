@@ -261,6 +261,8 @@ nav {
 }
 
 .button--submit {
+  color: white;
+  font-weight: 800;
   padding: 6px 12px;
   margin-right: 10px;
   background-color: rgba(68, 99, 140, 0.363);

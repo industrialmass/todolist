@@ -24,7 +24,9 @@ const bodyEventListeners = (() => {
 
     const add = document.getElementById("project-add");
     if (add && add.contains(event.target)) {
-      document.getElementById("dark-screen").append(makePopup());
+      document
+        .getElementById("dark-screen")
+        .append(makePopup({ headerText: "Add project" }));
       document.getElementById("dark-screen").style.display = "flex";
     }
 
@@ -42,7 +44,9 @@ const bodyEventListeners = (() => {
 
     const edit = document.getElementById("project-edit");
     if (edit && edit.contains(event.target)) {
-      document.getElementById("dark-screen").append(makePopup());
+      document
+        .getElementById("dark-screen")
+        .append(makePopup({ headerText: "Edit project" }));
       document.getElementById("dark-screen").style.display = "flex";
     }
 

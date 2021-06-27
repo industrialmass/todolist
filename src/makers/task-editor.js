@@ -68,6 +68,10 @@ const taskEditor = () => {
     classes: ["button", "button--submit"],
     description: state.type === "create" ? "Add task" : "Save",
   });
+
+  if (state.typedValue) {
+    submitButton.classList.add("button--submit--ready");
+  }
   const cancelButton = makeButton({
     id: "cancel",
     classes: ["button", "button--cancel"],
