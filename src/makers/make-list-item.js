@@ -1,3 +1,5 @@
+import { dateToString } from "../helpers/date-functions";
+
 const makeListItem = (data, parameters) => {
   // Create the list item to append to UL
   const listItem = document.createElement("li");
@@ -10,8 +12,14 @@ const makeListItem = (data, parameters) => {
   const text = document.createElement("div");
   text.textContent = data.description;
   text.classList.add("text");
-
   listItemContent.append(text);
+
+  if (data.dueDate) {
+    const date = document.createElement("div");
+    date.textContent = dateToString(data.dueDate);
+    date.classList.add("date-text")
+    listItemContent.append(date);
+  }
 
   // Side buttons - to the left of our content
   const listItemSideButtons = document.createElement("div");

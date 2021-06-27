@@ -13,18 +13,6 @@
   --Architecture-5-rgba: rgba(140, 134, 50, 1);
 }
 
-.red {
-  color: red;
-}
-
-.orange {
-  color: orange;
-}
-
-.blue {
-  color: blue;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -382,6 +370,7 @@ ul {
 .project-add {
   display: none;
   margin-left: auto;
+  margin-right: 10px;
 }
 
 .project-controls:hover {
@@ -439,20 +428,55 @@ ul {
 }
 
 .popup {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  height: 300px;
+  height: 350px;
+  min-width: 250px;
   border-radius: 10px;
   opacity: initial;
   background-color: white;
   z-index: 2;
 }
 
-.popup__controls {
+.popup__header {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.popup__header-container {
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
   width: 100%;
+}
+
+.popup__controls {
+  padding: 10px;
   margin-top: auto;
   margin-left: auto;
+}
+
+.popup__content-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__name-label {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 5px 0;
+}
+
+.input--project-name {
+  border: 1px solid #ddd;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
 }
 
 .project-list-container {
@@ -491,4 +515,40 @@ ul {
 
 .project-list__item:hover {
   background-color: #ddd;
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+.blue {
+  color: blue;
+}
+
+.date-text {
+  font-size: 14px;
+  color: grey;
+}
+
+@media screen and (max-width: 415px) {
+  #nav {
+    display: none;
+  }
+  .main-container {
+    padding: 0;
+    margin: 0;
+    width: 100;
+  }
+  main {
+    margin: 0 5px;
+    padding: 0 10px;
+  }
+
+  .todolist__controls {
+    display: block;
+  }
 }

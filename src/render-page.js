@@ -2,6 +2,8 @@ import { appState } from "./state";
 import { taskButton } from "./components/task-button";
 import { ulToDoList } from "./components/ul-to-do-list";
 import { mainEventListeners } from "./main-event-listeners";
+import { toDoList } from "./to-do-list";
+import { colorPicker } from "./helpers/color-functions";
 
 const _getHeaderText = (page) => {
   if (page.type === "project") {
@@ -35,6 +37,12 @@ const renderPage = (page) => {
   const ul = ulToDoList();
 
   main.append(headline, ul, taskButton);
+
+  document.querySelectorAll(".todolist__side-buttons").forEach((element) => {
+    const parentItem = element.closest(".todolist__item");
+    const todo = toDoList.getItemById(parentItem.id);
+    element.classList.add(colorPicker(todo.priority));
+  });
 };
 
 export { renderPage };

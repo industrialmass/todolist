@@ -9,12 +9,20 @@ const makePopup = (parameters) => {
   form.id = "popup";
   form.classList.add("popup");
 
+  const headerContainer = document.createElement("div");
+  headerContainer.classList.add("popup__header-container")
+
   const header = document.createElement("h2");
+  header.classList.add("popup__header");
   header.textContent = boolSubmit ? "Add project" : "Edit project";
+  
+  headerContainer.append(header);
 
   const nameContainer = document.createElement("div");
+  nameContainer.classList.add("popup__content-container");
   const nameLabel = document.createElement("label");
   nameLabel.textContent = "Name";
+  nameLabel.classList.add("popup__name-label");
 
   const nameInput = makeInput("project-name", "e.g. Work");
   nameInput.id = "name-input";
@@ -34,11 +42,11 @@ const makePopup = (parameters) => {
   const cancel = makeButton({
     id: "popup-cancel",
     description: "Cancel",
-    classes: "button",
+    classes: ["button"],
   });
   formControls.append(submit, cancel);
 
-  form.append(header, nameContainer, formControls);
+  form.append(headerContainer, nameContainer, formControls);
   return form;
 };
 
