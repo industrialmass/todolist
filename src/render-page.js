@@ -3,8 +3,24 @@ import { taskButton } from "./components/task-button";
 import { ulToDoList } from "./components/ul-to-do-list";
 import { mainEventListeners } from "./main-event-listeners";
 
+const _getHeaderText = (page) => {
+  if (page.type === "project") {
+    return page.project.description;
+  } else if (page.type === "today") {
+    return "Today";
+  } else if (page.type === "upcoming") {
+    return "Upcoming";
+  } else {
+    return "Landing";
+  }
+};
+
 const renderPage = (page) => {
-  appState.set({ currentPage: page });
+  if (!page) {
+    page = appState.get().currentPage;
+  } else {
+    appState.set({ currentPage: page });
+  }
   const main = document.createElement("div");
   main.id = "main";
   main.classList.add("main-container");
@@ -14,7 +30,7 @@ const renderPage = (page) => {
     mainEventListeners();
   }
   const headline = document.createElement("h1");
-  headline.textContent = page.project ? page.project.description : "Landing";
+  headline.textContent = _getHeaderText(page);
 
   const ul = ulToDoList();
 

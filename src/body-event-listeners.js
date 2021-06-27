@@ -44,6 +44,7 @@ const bodyEventListeners = (() => {
         }
       }
       document.getElementById("project-list").replaceWith(ulProjectList());
+      return;
     }
 
     if (
@@ -64,6 +65,7 @@ const bodyEventListeners = (() => {
           document.getElementById("dark-screen").style.display = "flex";
         }
       }
+      return;
     }
 
     const cancel = document.getElementById("popup-cancel");
@@ -93,6 +95,30 @@ const bodyEventListeners = (() => {
       renderPage({
         type: "project",
         project: projects.getItemById(li.id),
+      });
+    }
+
+    const home = document.getElementById("home");
+    if (home.contains(event.target)) {
+      renderPage({
+        type: "home",
+        project: "none",
+      });
+    }
+
+    const today = document.getElementById("today");
+    if (today.contains(event.target)) {
+      renderPage({
+        type: "today",
+        project: "none",
+      });
+    }
+
+    const upcoming = document.getElementById("upcoming");
+    if (upcoming.contains(event.target)) {
+      renderPage({
+        type: "upcoming",
+        project: "none",
       });
     }
   });

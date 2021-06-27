@@ -11,13 +11,6 @@ const load = () => {
   const ul = ulToDoList();
 
   main.append(headline, ul, taskButton);
-  const projectListContainer = document.getElementById(
-    "project-list-container"
-  );
-
-  const ulProjects = ulProjectList();
-
-  projectListContainer.append(ulProjects);
 };
 
 export { load };

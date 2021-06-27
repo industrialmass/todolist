@@ -1,22 +1,40 @@
 const dateToString = (date) => {
-  const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
-  const now = new Date();
-  const nowMonth = now.getMonth();
-  const nowDay = now.getDate();
-  const nowYear = now.getFullYear();
 
-  if (month === nowMonth && day === nowDay && year === nowYear) {
+  if (isToday(date)) {
     return "Today";
-  } else if (month === nowMonth && day - nowDay === 1 && year === nowYear) {
+  } else if (isTomorrow(date)) {
     return "Tomorrow";
   } else {
     return `${_getMonthName(month)} ${day}`;
   }
 };
 
-export { dateToString };
+const isToday = (date) => {
+  const today = new Date();
+  return (
+    today.getMonth() === date.getMonth() &&
+    today.getDate() === date.getDate() &&
+    today.getFullYear() === date.getFullYear()
+  );
+};
+
+const isTomorrow = (date) => {
+  const today = new Date();
+  return (
+    today.getMonth() === date.getMonth() &&
+    date.getDate() - today.getDate() === 1 &&
+    today.getFullYear() === date.getFullYear()
+  );
+};
+
+const isUpcoming = (date) => {
+  const today = new Date();
+  return (date.getTime() - today.getTime()) / (1000 * 3600 * 24) <= 14;
+};
+
+export { dateToString, isToday, isTomorrow, isUpcoming };
 
 function _getMonthName(month) {
   switch (month) {

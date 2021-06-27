@@ -1,9 +1,5 @@
 const appState = (() => {
   const defaultState = {
-    currentPage: {
-      type: "home",
-      project: "none",
-    },
     popup: {
       id: null,
       description: "",
@@ -30,7 +26,7 @@ const appState = (() => {
   };
 
   const reset = () => {
-    state = defaultState;
+    state = { ...state, ...defaultState };
     return state;
   };
 

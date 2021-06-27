@@ -1,3 +1,4 @@
+import { isToday, isUpcoming } from "../helpers/date-functions";
 import { makeList } from "../makers/make-list";
 import { appState } from "../state";
 import { toDoList } from "../to-do-list";
@@ -10,7 +11,17 @@ const ulToDoList = () => {
   let filterCallback;
   if (state.currentPage.type === "project") {
     filterCallback = (ele) => {
-      return ele.project.id === state.currentPage.project.id;
+      return ele.project
+        ? ele.project.id === state.currentPage.project.id
+        : false;
+    };
+  } else if (state.currentPage.type === "today") {
+    filterCallback = (ele) => {
+      return ele.dueDate ? isToday(ele.dueDate) : false;
+    };
+  } else if (state.currentPage.type === "upcoming") {
+    filterCallback = (ele) => {
+      return ele.dueDate ? isUpcoming(ele.dueDate) : false;
     };
   } else {
     filterCallback = () => true;

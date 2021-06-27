@@ -7,9 +7,8 @@ import { projectPicker } from "./makers/project-picker";
 import { priorityPicker } from "./makers/priority-picker";
 import datepicker from "js-datepicker";
 import { resetTaskEditor } from "./reset-task-editor";
-import { closeOldEditor } from "./helpers/dom-functions";
 import { taskButton } from "./components/task-button";
-import { ulToDoList } from "./components/ul-to-do-list";
+import { renderPage } from "./render-page";
 
 const mainEventListeners = () => {
   const main = document.getElementById("main");
@@ -19,8 +18,10 @@ const mainEventListeners = () => {
     // Creates a task editor form
     if (taskButton.contains(event.target)) {
       taskButton.remove();
-      closeOldEditor();
-      main.append(taskEditor());
+      appState.reset();
+      console.log(appState.get());
+      renderPage();
+      document.getElementById("main").append(taskEditor());
       const date = document.getElementById("date");
 
       datepicker(date, {
@@ -99,7 +100,7 @@ const mainEventListeners = () => {
     // Closes the task editor form without saving
     const cancel = document.getElementById("cancel");
     if (cancel && cancel.contains(event.target)) {
-      closeOldEditor();
+      renderPage();
       return;
     }
 
@@ -109,20 +110,10 @@ const mainEventListeners = () => {
     if (submit && submit.contains(event.target)) {
       const state = appState.get();
       if (!state.typedValue) return;
-      const input = document.getElementById("input");
       const toDo = makeToDo();
       toDoList.add(toDo);
+      renderPage();
 
-      input.value = null;
-      const list = document.getElementById("todolist");
-      if (list) list.remove();
-      main.append(ulToDoList());
-
-      // Clean up the task editor
-      const taskEditor = document.getElementById("task-editor");
-      taskEditor.remove();
-      appState.reset();
-      main.append(taskButton);
       return;
     }
 
@@ -149,41 +140,37 @@ const mainEventListeners = () => {
         ".button--edit, .button--edit > *, .button--edit > * > *"
       )
     ) {
+      const oldItem = event.target.closest(".todolist__item");
       // If a task editor already exists, close it
-      const list = document.querySelectorAll(".todolist__item");
-      for (const item of list) {
-        if (item.contains(event.target)) {
-          // If a task editor already exists, close it
-          closeOldEditor();
+      renderPage();
 
-          // Update the state with the relevant todo
-          const todo = toDoList.getItemById(item.id);
-          appState.set({
-            typedValue: todo.description,
-            selectedDate: todo.dueDate,
-            selectedProject: todo.project,
-            selectedPriority: todo.priority,
-            type: "edit",
-            itemID: todo.id,
-          });
+      const item = document.getElementById(oldItem.id);
 
-          // Create the editor
-          const editor = taskEditor();
-          item.replaceWith(editor);
+      // Update the state with the relevant todo
+      const todo = toDoList.getItemById(item.id);
+      appState.set({
+        typedValue: todo.description,
+        selectedDate: todo.dueDate,
+        selectedProject: todo.project,
+        selectedPriority: todo.priority,
+        type: "edit",
+        itemID: todo.id,
+      });
 
-          const date = document.getElementById("date");
+      // Create the editor
+      const editor = taskEditor();
+      item.replaceWith(editor);
 
-          datepicker(date, {
-            disableYearOverlay: true,
-            minDate: new Date(),
-            onSelect: (instance, day) => {
-              appState.set({ selectedDate: day });
-              resetTaskEditor();
-            },
-          });
-          break;
-        }
-      }
+      const date = document.getElementById("date");
+
+      datepicker(date, {
+        disableYearOverlay: true,
+        minDate: new Date(),
+        onSelect: (instance, day) => {
+          appState.set({ selectedDate: day });
+          resetTaskEditor();
+        },
+      });
     }
 
     const save = document.getElementById("save");
@@ -191,7 +178,7 @@ const mainEventListeners = () => {
       const state = appState.get();
       if (!state.typedValue) return;
       toDoList.update(state.itemID);
-      closeOldEditor();
+      renderPage();
     }
   });
 
