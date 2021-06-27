@@ -56,7 +56,7 @@ const taskEditor = () => {
   priorityPicker.classList.add(colorPicker(state.selectedPriority));
 
   extras.append(date);
-  if (projects.length) extras.append(projectPicker);
+  if (projects.get().length) extras.append(projectPicker);
   extras.append(priorityPicker);
 
   inputControls.append(input, extras);
