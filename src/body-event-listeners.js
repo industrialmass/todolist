@@ -5,6 +5,7 @@ import { appState } from "./state";
 import { ulProjectList } from "./components/ul-project-list";
 import { closePopup } from "./helpers/dom-functions";
 import { renderPage } from "./render-page";
+import { toDoList } from "./to-do-list";
 
 const bodyEventListeners = (() => {
   const body = document.body;
@@ -31,15 +32,30 @@ const bodyEventListeners = (() => {
       document.getElementById("dark-screen").style.display = "flex";
     }
 
-    if (
-      event.target.matches(
-        ".button--remove, .button--remove > *, .button--remove > * > *"
-      )
-    ) {
+    if (event.target.matches(".button--remove *")) {
       const projectListItems = document.querySelectorAll(".project-list__item");
       for (const item of projectListItems) {
         if (item.contains(event.target)) {
+          if (
+            appState.get().currentPage.project === projects.getItemById(item.id)
+          ) {
+            appState.set({
+              currentPage: {
+                type: "home",
+                project: "none",
+              },
+            });
+          }
+          const itemsToRemove = toDoList.get((element) => {
+            return element.project && element.project.id === item.id;
+          });
+
+          itemsToRemove.forEach((element) => {
+            toDoList.remove(element.id);
+          });
+
           projects.remove(item.id);
+          renderPage();
           break;
         }
       }
