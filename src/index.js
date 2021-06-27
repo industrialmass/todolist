@@ -108,6 +108,8 @@ main.addEventListener("click", (event) => {
   // Submits the form data and closes the task editor
   const submit = document.getElementById("submit");
   if (submit && submit.contains(event.target)) {
+    const state = appState.get();
+    if (!state.typedValue) return;
     const input = document.getElementById("input");
     const toDo = makeToDo();
     toDoList.add(toDo);
@@ -186,6 +188,7 @@ main.addEventListener("click", (event) => {
   const save = document.getElementById("save");
   if (save && save.contains(event.target)) {
     const state = appState.get();
+    if (!state.typedValue) return;
     toDoList.update(state.itemID);
     closeOldEditor();
   }
@@ -198,5 +201,15 @@ main.addEventListener("input", (event) => {
   const input = document.getElementById("input");
   if (input && input.contains(event.target)) {
     appState.set({ typedValue: input.value });
+    const submit = document.getElementById("submit");
+    const save = document.getElementById("save");
+    if (input.value) {
+      if (submit) submit.classList.add("button--submit--ready");
+      if (save) save.classList.add("button--submit--ready");
+    }
+    if (!input.value) {
+      if (submit) submit.classList.remove("button--submit--ready");
+      if (save) save.classList.remove("button--submit--ready");
+    }
   }
 });

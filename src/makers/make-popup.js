@@ -1,12 +1,18 @@
 import { makeButton } from "./make-button";
 import { makeInput } from "./make-input";
 
-const makePopup = () => {
+var parameters = {
+  headerText: "Add project",
+  controlButtons: [],
+};
+
+const makePopup = (parameters) => {
   const form = document.createElement("form");
   form.id = "popup";
   form.classList.add("popup");
+
   const header = document.createElement("h2");
-  header.textContent = "Add project";
+  header.textContent = parameters.headerText;
 
   const nameContainer = document.createElement("div");
   const nameLabel = document.createElement("label");
