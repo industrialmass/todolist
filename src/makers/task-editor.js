@@ -3,6 +3,7 @@ import { makeInput } from "./make-input";
 import { dateToString } from "../helpers/date-functions";
 import { colorPicker } from "../helpers/color-functions";
 import { appState } from "../state";
+import { projects } from "../project-list";
 
 const taskEditor = () => {
   const form = document.createElement("form");
@@ -54,7 +55,9 @@ const taskEditor = () => {
 
   priorityPicker.classList.add(colorPicker(state.selectedPriority));
 
-  extras.append(date, projectPicker, priorityPicker);
+  extras.append(date);
+  if (projects.length) extras.append(projectPicker);
+  extras.append(priorityPicker);
 
   inputControls.append(input, extras);
 
