@@ -180,6 +180,12 @@ const mainEventListeners = () => {
       toDoList.update(state.itemID);
       renderPage();
     }
+
+    if (event.target.matches(".todolist__side-buttons *")) {
+      const li = event.target.closest(".todolist__item");
+      toDoList.update(li.id);
+      renderPage();
+    }
   });
 
   // Event delegation; input handler

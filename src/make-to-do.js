@@ -9,6 +9,7 @@ const makeToDo = () => {
     priority: state.selectedPriority,
     project: state.selectedProject,
     id: state.itemID ? state.itemID : uniqueID.generate(),
+    complete: false,
   };
 };
 
