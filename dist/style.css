@@ -291,6 +291,11 @@ nav {
   display: inherit;
 }
 
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .text--task-init {
   margin-left: 10px;
 }
@@ -471,8 +476,7 @@ ul {
   align-items: center;
 }
 
-#project-remove,
-#project-edit {
+.project-list__control-buttons {
   padding: 1px;
   margin: 1px;
   font-size: 14px;

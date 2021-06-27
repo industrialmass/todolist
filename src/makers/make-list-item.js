@@ -6,8 +6,10 @@ const makeListItem = (data, parameters) => {
 
   // A div to hold the text content
   const listItemContent = document.createElement("div");
+  listItemContent.classList.add(`${parameters.listId}__item-content`);
   const text = document.createElement("div");
   text.textContent = data.description;
+  text.classList.add("text");
 
   listItemContent.append(text);
 
@@ -21,13 +23,17 @@ const makeListItem = (data, parameters) => {
   // Append the relevant buttons
   if (parameters.sideButtons) {
     for (const button of parameters.sideButtons) {
-      listItemSideButtons.append(button.func(button.id));
+      const newButton = button.func(`${button.id}|${data.id}`);
+      newButton.classList.add(`${parameters.listId}__side-buttons`);
+      listItemSideButtons.append(newButton);
     }
   }
 
   if (parameters.controlButtons) {
     for (const button of parameters.controlButtons) {
-      listItemControls.append(button.func(button.id));
+      const newButton = button.func(`${button.id}|${data.id}`);
+      newButton.classList.add(`${parameters.listId}__control-buttons`);
+      listItemControls.append(newButton);
     }
   }
 

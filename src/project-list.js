@@ -4,8 +4,6 @@ import { makeProject } from "./make-project";
 const projects = (() => {
   const list = getStorage("projects") ? getStorage("projects") : [];
 
-  console.log(list);
-
   const _updateStorage = () => {
     setStorage("projects", list);
   };

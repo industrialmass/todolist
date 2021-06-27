@@ -1,8 +1,11 @@
-import { projects } from "./project-list";
-
 const appState = (() => {
   const defaultState = {
+    currentPage: {
+      type: "home",
+      project: "none",
+    },
     popup: {
+      id: null,
       description: "",
     },
     selectedDate: null,

@@ -16,8 +16,8 @@ const toDoList = (() => {
     setStorage("toDoList", list);
   };
 
-  const get = () => {
-    return list;
+  const get = (parse) => {
+    return list.filter(parse);
   };
 
   const getItemById = (id) => {
