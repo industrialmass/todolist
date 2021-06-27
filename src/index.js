@@ -6,6 +6,10 @@ import { getStorage, setStorage } from "./helpers/storage-functions.js";
 import { projects } from "./data/project-list.js";
 import { toDoList } from "./data/to-do-list.js";
 import { uniqueID } from "./helpers/unique-id.js";
+import "@fortawesome/fontawesome-free/js/fontawesome";
+import "@fortawesome/fontawesome-free/js/solid";
+import "@fortawesome/fontawesome-free/js/regular";
+import "@fortawesome/fontawesome-free/js/brands";
 
 if (!getStorage("loadedBefore")) {
   projects.add({ description: "Tutorial", id: uniqueID.generate() });
