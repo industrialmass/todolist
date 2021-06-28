@@ -308,7 +308,6 @@ ul {
 }
 
 .todolist__item {
-  height: 29px;
   padding: 10px;
   border-radius: 5px;
   display: flex;
