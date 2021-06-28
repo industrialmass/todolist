@@ -331,7 +331,7 @@ ul {
 
 .todolist__item:hover > .todolist__controls {
   animation: fadein 1s;
-  display: block;
+  display: flex;
 }
 
 @keyframes fadein {
@@ -555,7 +555,7 @@ ul {
   }
 
   .todolist__controls {
-    display: block;
+    display: flex;
   }
 }
 
